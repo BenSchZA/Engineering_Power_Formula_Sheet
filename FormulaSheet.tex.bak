@@ -1,0 +1,245 @@
+% Arara build configuration:
+% arara: pdflatex: { synctex: on }
+% arara: pdflatex: { synctex: on }
+
+%######################Document Setup######################
+\documentclass[a4paper, 10pt]{article}
+
+\usepackage{graphicx}
+\usepackage{anysize}
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{pdfpages}
+\usepackage{amsmath}
+
+\usepackage{paracol}
+\setlength{\columnsep}{24pt}
+
+\usepackage{tikz}
+
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\marginsize{12mm}{12mm}{1mm}{1mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1pt}
+
+%################################
+\newcommand{\new}[1]{\begin{center}
+{\large\textbf{#1}}\end{center}}
+
+\newcommand{\side}[1]{{\small \textbf{\textit{#1:}}}}
+
+\newcommand{\job}[4]{{\normalsize \textbf{#1}} $\bullet$ #3 \\{\small \textit{\textbf{#2}}}\\#4 \\}
+
+\newcommand{\vol}[3]{{\normalsize \textbf{#1}} $\bullet$ #3 \\{\small \textit{#2}}\\}
+
+\newcommand{\point}[1]{$\bullet$ #1\\}
+%##########################################################
+
+\begin{document}
+
+
+%Header
+\hrule
+\begin{center}
+\begin{LARGE}
+\textbf{Power Formula Sheet: EEE3031S \& EEE4099F}
+\end{LARGE} \\
+\end{center}
+\hrule
+
+\pagenumbering{gobble}
+
+%Content
+
+\begin{paracol}{3}[]
+\medskip
+\textbf{Induction Machines}\\
+$a=\frac{N_1}{N_2}$\\
+$E_1=aE_2$\\
+$I^{'}=\frac{I}{a}$\\
+$Z^{'}=a^2Z$\\
+$P_{ag}=\frac{R_{2}^{'}}{s} = \frac{R_{2}^{'}}{s} + R_{2}^{'}$\\
+$P_{ag}=\frac{P_{mech}}{(1-s)}$\\
+$\phi_p = \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} B(\theta)lrd\theta = 2B_{max}lr$\\
+$n_s=\frac{120f_1}{p} RPM$\\
+$s=\frac{n_s-n}{n_s}$\\
+$f_2=sf_1$\\
+$n_2=sn_s$\\
+
+\textbf{IEEE Equivalent Circuit}\\
+$"V_1"=I_1(R_1+jX_1)+E_1$\\
+$"E_1"=aE_2=I_\phi jX_m + I_{2}^{'}(\frac{R_{2}^{'}}{s}+jX_{2}^{'})$\\
+
+\textbf{Thevenin Equivalent Circuit}\\
+$V_{th}=\frac{X_m}{\sqrt{R_1^2 + (X_1 + X_m)^2}}V_1$\\
+$k_{th}=\frac{X_m}{X_1 + X_m}$\\
+$V_{th}\simeq k_{th}V_1$\\
+$Z_{th}=\frac{jX_m(R_1+jX_1)}{R_1+j(X_1+X_m)}$\\
+$R_{th}\simeq k_{th}^2V_1$\\
+$X_{th}\simeq X_1$\\
+$I_{2}^{'}=\frac{V_{th}}{(R_{th}+\frac{R_{2}^{'}}{s})+j(X_{th}+X_{2}^{'})}$\\
+
+\textbf{No-Load Formulae}\\
+$\frac{R_{2}^{'}}{s}=\infty$\\
+$X_{NL}=X_1+X_m$\\
+
+$V_{p}=V_1=\frac{V_L}{\sqrt{3}}$\\
+$I_{NL}=I_1=I_L$\\
+$Z_{NL}=\frac{V_1}{I_1}$\\
+
+$P_{rot}=P_{NL}-3I_1^2R_1$\\
+$R_{NL}=\frac{P_{NL}}{3I_1^2}$\\
+$X_{NL}=\sqrt{Z_{NL}^2-R_{NL}^2}$\\
+
+\textbf{Blocked-Rotor Formulae}\\
+$s=1$\\
+$X_m=0$\\
+
+$V_{p}=V_1=\frac{V_L}{\sqrt{3}}$\\
+$I_{BL}=I_1=I_L$\\
+$Z_{BL}=\frac{V_1}{I_1}$\\
+
+$R_{BL}=\frac{P_{BL}}{3I_1^2}$\\
+
+$R_{2}^{'}=R_{BL}-R_1$\\
+\textit{IEEE Recommended Form}\\
+$R=R_{BL}-R_1$\\
+$R_{2}^{'}=(\frac{X_{2}^{'}+X_m}{X_m})^2R$\\
+
+\switchcolumn
+$X_{BL@f_{NL}}=\sqrt{Z_{BL}^2-R_{BL}^2}$\\
+$X_{BL@f}=X_{BL@f_{NL}}\times \frac{f_2}{f_1}$\\
+$X_{BL@f}=X_1+X_{2}^{'}$\\
+$X_1=X_{2}^{'}=\frac{X_{BL@f}}{2}$\\
+
+\textbf{Performance Formulae}\\
+$T,P=T_{ph},P_{ph}$\\
+
+$P_{mech}=T_{mech}\omega_{mech}=I_2^2 \frac{R_2}{s}(1-s)$\\
+$\omega_{mech}=\frac{2\pi n_s}{60}=(1-s)\omega_{syn}$\\
+$T_{mech}=\frac{1}{\omega_{syn}}\frac{V_{th}^2}{(R_{th}+\frac{R_{2}^{'}}{s})^2 + (X_{th}+X_{2}^{'})^2} \frac{R_2}{s}$\\
+
+$s_{Tmax}=\frac{R_{2}^{'}}{\sqrt{R_{th}^2+(X_{th}+X_{2}^{'})^2}}$\\
+$T_{max}=\frac{1}{2\omega_{syn}}\frac{V_{th}^2}{R_th + \sqrt{R_{th}^2 + (X_th + X_{2}^{'})^2}}$\\
+$\frac{Tmax}{T}=\frac{s_{Tmax}^2+s^2}{2s_{Tmax}s}$\\
+
+$Z_1=R_1+jX_1+\frac{jX_m(\frac{R_{2}^{'}}{s}+jX_{2}^{'})}{\frac{R_{2}^{'}}{s}+j(X_m+X_{2}^{'})}=|Z_1|\angle \theta_1$\\
+$I_1=\frac{V_1}{Z_1}=I_\phi + I_{2}^{'}$\\
+
+\textbf{Efficiency Formulae}\\
+$PF=cos(\theta_1)$\\
+$P_{in}=3V_1I_1cos(\theta_1)$\\
+$P_1=3I_1^2R1$\\
+$P_2=3I_2^2R2$\\
+
+$Eff_{ideal}=\frac{P_{out}}{P_{in}}=1-s$\\
+$P_{ag}=P_{in}$\\
+$P_2=sP_{ag}$\\
+$P_{out}=P_{mech}=P_{ag}(1-s)$\\
+
+$M=+s$\\
+$G=-s$\\
+$P=s>1$\\
+
+\textbf{Synchronous Formulae}\\
+$PF=cos(\phi)$\\
+$S=P+jQ$\\
+
+$X_s=X_{ar}+X_{al}$\\
+
+$V_t^\rightarrow = E_f^\rightarrow + I_a^\rightarrow + jI_a^\rightarrow X_s$\\
+$E_f^\rightarrow=|E_f^\rightarrow|\angle -\delta$\\
+
+$P_{in}=3V_tI_a cos(\phi)$\\
+$E_f = V_t - jI_aX_s$\\
+$P=\frac{3V_tE_f}{X_s}sin(\delta)$\\
+$E_f sin(\delta) = B for P = A$\\
+$EI_a cos(\phi) = C for P = A$\\
+$E_A=\sqrt{(V_T cos\phi + I_a R_a)^2 + (V_T sin\phi + I_a X_s)^2}$\\
+
+$E_f^\rightarrow = V_t^\rightarrow + I_a^\rightarrow + jI_a^\rightarrow X_s$\\
+$E_f^\rightarrow=|E_f^\rightarrow|\angle \delta$\\
+
+\switchcolumn
+
+$V_t=|V_t|\angle 0^0$\\
+$Z_s = R_a +j X_s = |Z|\angle \theta_s$\\
+
+$X_s=|X_s| \angle 90^0$\\
+$E_f^*=|E_f| \angle -\delta$\\
+
+$S_p = V_tI_a^*$\\
+$I_a^* = |\frac{E_f-V_t}{Z_s}|^* = \frac{E_f^*}{Z_s^*} - \frac{V_t^*}{Z_s^*}$\\
+
+$S_p=..., P\Rightarrow cos(\gamma), Q\Rightarrow sin(\gamma)$\\
+
+$R_a=0 \Rightarrow \theta_s = 90^0 \Rightarrow P_{ag} = P_{3\phi}$\\
+$P_{max} = \frac{2|V_t||E_f|}{|X_s|}$\\
+$P_{3\phi}=P_{max}sin(\delta) W$\\
+$Q_{3\phi}=P_{max}cos(\delta) - 3\frac{|V_t|^2}{|X_s|} VAR$\\
+
+$\omega_{syn} = \frac{n_{syn} 2\pi}{60}$\\
+$T=\frac{P_{3\phi}}{\omega_{syn}}=T_{max} sin(\delta) Nm$\\
+$T_{max}=\frac{P_{max}}{\omega_{syn}}$\\
+
+
+\textbf{Machines}\\
+$B=\mu H$
+$B=\mu_0 H=\frac{\mu_0 Ni}{2lg} = Bg$\\
+$H=\frac{Ni}{l}$\\
+$PolePitch = 180^0ed$\\
+$SlotPitch=\frac{720^0}{slots}$\\
+$CoilPitch=7/9 \times PolePitch$\\
+$B(\theta)=B_{1max}cos(\theta)+B_{3max}cos(2\theta)+...$\\
+
+$\alpha	= Angle/Pole/Phase = SlotPitch... $\\
+$n=Slots/Pole/Phase$\\
+$K_d=\frac{sin(n\frac{\alpha}{2})}{n sin(\frac{\alpha}{2})}$\\
+
+$K_p=cos(\frac{\gamma}{2})$\\
+$\gamma=180^0-CoilPitch$\\
+
+$K_w = K_d \times K_p$\\
+$K_{wh} = (\frac{sin(hn\frac{\alpha}{2})}{n\cdot sin(h\frac{\alpha}{2})}) \cdot cos(h\frac{\gamma}{2})$\\
+
+$E_h = 4.44 h f N \phi_1 K_{wh}$\\
+$N = turns/phase$ and $\phi_h=\frac{B_{max}\% h}{h}$\\
+
+$E_{LN} = \sqrt{E_1^2 + E_3^2 +E_5^2 + ...}$\\
+$E_{LL} = \sqrt{3}\sqrt{E_1^2 + E_5^2 +E_7^2 + ...}$\\
+
+
+\textbf{Machines}\\
+\textbf{Important Relationships}\\
+$\omega_s=k_7f$\\
+$s=\frac{\omega_s-\omega_r}{\omega_s}$\\
+$f_{sl} = sf$\\
+$\%P_r=\frac{f_{sl}}{f-f_{sl}}$\\
+$V_s \simeq k_3 \Phi_{ag}f$\\
+$I_r \simeq k_5 \Phi_{ag}f_{sl}$\\
+$T_{em} \simeq k_6 \Phi_{ag}^2f_{sl}$\\
+$I_m = k_8\Phi_{ag}$\\
+$I_s \simeq \sqrt{I_m^2+I_r^2}$\\
+
+\end{paracol}
+
+
+%\begin{tabular}{l l l}
+%  \textbf{Year}&\textbf{Duration}&\textbf{Description}\\
+%  2015 & 1m & \\
+%  2006 & 8 \\
+%\end{tabular}
+
+%\switchcolumn
+
+%\end{paracol}
+
+\end{document}
